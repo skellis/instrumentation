@@ -6,3 +6,4 @@
  python -m pip install pyserial
  python -m pip install pyvisa
  
+A copy of the PYFSRS repository (7-2-2018) is included here. The original is found at https://github.com/ddietze/pyFSRS .
