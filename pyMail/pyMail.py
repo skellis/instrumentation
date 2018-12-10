@@ -1,5 +1,6 @@
 #Modified for python 2.71 by Scott Ellis 12-10-2018
 #A short script for sending bulk emails with a message of message.txt sent to recipients mycontacts.txt
+#Thanks to Arjun Krishna Babu for original.
 #https://arjunkrishnababu96.gitlab.io/post/send-emails-using-code/
 #This code has been set up to send from a gmail account but host='smtp.gmail.com', port=587 can be modified to send from other account
 #Common Providers
