@@ -59,7 +59,7 @@ class dummyAxis(module.Axis):
     # goto new position
     def goto(self, pos):
         self.position = pos
-        print("moved to", pos)
+        print "moved to", pos
 
     # should return True if stage is still moving
     def is_moving(self):

@@ -265,7 +265,7 @@ class ScanThread(module.ExperimentThread):
             if self.type == 0:
 
                 # close shutter
-                print("close shutter")
+                print "close shutter"
                 self.shutter.write(0)
                 # record frame
                 if self.canQuit.isSet() == 0:
@@ -274,7 +274,7 @@ class ScanThread(module.ExperimentThread):
                     # send to GUI
                     wx.CallAfter(self.parent.onUpdate, val, 0, 0, cset)
                 # open shutter
-                print("open shutter")
+                print "open shutter"
                 self.shutter.write(1)
             # record excited state spectra
             # ----------------------------
@@ -297,14 +297,14 @@ class ScanThread(module.ExperimentThread):
                 currentInterval= abs(self.points[cpoint % len(self.points)]-self.points[cpoint % len(self.points)-1])
                 self.axis.goto(self.points[cpoint % len(self.points)])
                 time.sleep(0.1+currentInterval/stagerange*maxtranslationTime)
-            print("Finished set ", cset)
+            print "Finished set ", cset
             cset += 1
 
         # return axis
         self.axis.goto(self.points[0])
         time.sleep(0.1+maxinterval/stagerange*maxtranslationTime)
         # close shutter
-        print("close shutter")
+        print "close shutter"
         self.shutter.write(0)
         # if reference signal was required
         # restore wait time and send data to main thread

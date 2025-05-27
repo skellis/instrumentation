@@ -42,8 +42,8 @@ def plugAndPlayComPorts(writeString,readString,skp=0,timeoutx=0.1,baudratex=9600
   desiredOutput=""
   found=0
   rm = visa.ResourceManager()
-  comres = rm.list_resources(query='ASRL?*')
-  print(comres)
+  comres = rm.list_resources(query=u'ASRL?*')
+  print comres
   comres_info = rm.list_resources_info()
   for d in comres:
     tempUnicodePort= comres_info[d].alias
@@ -64,16 +64,16 @@ def plugAndPlayComPorts(writeString,readString,skp=0,timeoutx=0.1,baudratex=9600
       desiredOutput=output
       desiredPort=d
       desiredName=tempPortName
-  print(str(counter)+" Com ports were detected.")
+  print str(counter)+" Com ports were detected."
   if counter>0:
-    print(comPortNames)
+    print comPortNames
     if found:
-      print("Instrument returned: "+desiredOutput)
-      print("Instrument automatically connected at "+desiredName)  
+      print "Instrument returned: "+desiredOutput
+      print "Instrument automatically connected at "+desiredName  
       if counter > skp:
         return desiredPort,desiredName
     else:
-      print("The port you were looking for was not found. You could consider changing the number of bites read, the default baud rate or the serial time out.")
+      print "The port you were looking for was not found. You could consider changing the number of bites read, the default baud rate or the serial time out."
   return ""
 
 class NewmarkStage(module.Axis):
@@ -286,9 +286,9 @@ class NewmarkStage(module.Axis):
         return vel0[0]/ self.fs2mm
 
     def goto(self, pos):
-        print("axis %s moved from %s fs to %.0f fs at speed ~%s mm/s"%(self.getCurrentMotor(),self.getPropertyByLabel("position").getValue(),pos, self.getCurrentSpeed()))
+        print "axis %s moved from %s fs to %.0f fs at speed ~%s mm/s"%(self.getCurrentMotor(),self.getPropertyByLabel("position").getValue(),pos, self.getCurrentSpeed())
         if not self.ready:
-            print("not ready")
+            print "not ready"
             return
         # move to new position
         if self.getCurrentMotor() in ("AX" , "AY"):

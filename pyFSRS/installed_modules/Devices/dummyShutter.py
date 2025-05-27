@@ -53,6 +53,6 @@ class dummyShutter(module.Output):
 
         status = bool(value) ^ bool(self.getPropertyByLabel("slope").getValue())
         if status:
-            print "Shutter open"
+            print("Shutter open")
         else:
-            print "Shutter closed"
+            print("Shutter closed")

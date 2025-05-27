@@ -94,7 +94,7 @@ class FSRSFocus(module.Experiment):
             self.plotWnd.Show()
 
             self.running = True
-            self.updTimer.Start(200.0, wx.TIMER_ONE_SHOT)
+            self.updTimer.Start(int(200), int(wx.TIMER_ONE_SHOT))
 
             module.Experiment.start(self, FocusThread, ccd=self.cameras[self.getPropertyByLabel("camera").getValue()], frames=self.getPropertyByLabel("frames").getValue())
 
@@ -123,7 +123,7 @@ class FSRSFocus(module.Experiment):
     def updateDisplay(self,event=None):
         event.Skip()
         if self.data is None:
-            self.updTimer.Start(200.0, wx.TIMER_ONE_SHOT)
+            self.updTimer.Start(int(200), int(wx.TIMER_ONE_SHOT))
             return
 
         A, B, C = self.data
@@ -140,7 +140,7 @@ class FSRSFocus(module.Experiment):
                 self.plotWnd.lowerPlotCanvas.addLine(x, C)
 
             wx.GetApp().Yield()
-            self.updTimer.Start(0.2, wx.TIMER_ONE_SHOT)
+            self.updTimer.Start(int(1), int(wx.TIMER_ONE_SHOT))
         elif self.running:
             # user closed the plotWindow -> stop thread
             self.plotWnd = None

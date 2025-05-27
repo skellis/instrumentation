@@ -39,7 +39,7 @@ def howMany():
             instr = rm.open_resource(d)
             if instr.query("*IDN?").find("SR830") != -1:
                 count += 1
-    print("Found %d SR830 LIAs" % count)
+    print "Found %d SR830 LIAs" % count
     return count
 
 

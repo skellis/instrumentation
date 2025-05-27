@@ -86,14 +86,14 @@ class pyFSRS(wx.Frame):
 
             found = False
             for d in list:
-                print(d)
+                print d
                 if os.path.split(d)[-1] != "__init__.py":
                     try:
                         cll = core.FSRSModule.load_from_file(d)
 
                         for cl in cll:
                             cl.category = catName
-                            print("added module", cl.name)
+                            print "added module", cl.name
 
                         self.modules = self.modules + cll
                         found = True

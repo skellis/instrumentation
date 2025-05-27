@@ -117,7 +117,7 @@ class PIXIS100(module.Input):
         self.cam.sendConfiguration()
 
         # get readout speed
-        print("Estimated readout time = %f ms" % self.cam.getParameter("ReadoutTimeCalculation"))
+        print "Estimated readout time = %f ms" % self.cam.getParameter("ReadoutTimeCalculation")
 
         # start timer for reading temperature
         # self.updTimer = threading.Timer(1, self.updateTemperature)
@@ -173,7 +173,7 @@ class PIXIS100(module.Input):
                     data = data.reshape((M, w))
                     data = data[20:, :]
                 else:
-                    print(M)
+                    print M
                     data = []
 
             if canQuit is not None:

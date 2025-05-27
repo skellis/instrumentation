@@ -610,11 +610,11 @@ class FSRSPlot(wx.Panel):
                 self.colormap = ([0, 0.5, 1], [[0, 0, 255], [255, 255, 255], [255, 0, 0]])
         elif isinstance(cmap, tuple) or isinstance(cmap, list):
             if len(cmap) != 2 or len(cmap[0]) != len(cmap[1]) or len(cmap[1][0]) != 3:
-                print("ERROR: cmap is not a valid colormap.")
+                print "ERROR: cmap is not a valid colormap."
                 return
             self.colormap = cmap
         else:
-            print("ERROR: Wrong datatype in setColormap! Has to be string or tuple.")
+            print "ERROR: Wrong datatype in setColormap! Has to be string or tuple."
             return
 
         # prepare colormap for image
@@ -827,7 +827,7 @@ class FSRSPlot(wx.Panel):
         if isinstance(a, float):
             return self.interpolateColor(a).astype(np.uint8)
         else:
-            col = np.array(list(map(self.interpolateColor, a.flatten()))).astype(np.uint8)
+            col = np.array(map(self.interpolateColor, a.flatten())).astype(np.uint8)
             try:
                 return col.reshape(a.shape[0], a.shape[1], 3)
             except:
@@ -1035,13 +1035,13 @@ class FSRSPlot(wx.Panel):
                 dc.DrawLine(x[i], self.dcbottom, x[i], self.dcbottom - self.ticklength)
                 dc.DrawLine(x[i], self.dctop, x[i], self.dctop + self.ticklength)
                 txtW, txtH = dc.GetTextExtent(self.lblx[i])
-                dc.DrawText(self.lblx[i], int(round(x[i] - txtW / 2)), int(round(self.dcbottom + txtH / 2)))
+                dc.DrawText(self.lblx[i], x[i] - txtW / 2, self.dcbottom + txtH / 2)
         for i in range(len(y)):
             if y[i] >= self.dctop and y[i] <= self.dcbottom:
                 dc.DrawLine(self.dcleft, y[i], self.dcleft + self.ticklength, y[i])
                 dc.DrawLine(self.dcright, y[i], self.dcright - self.ticklength, y[i])
                 txtW, txtH = dc.GetTextExtent(self.lbly[i])
-                dc.DrawText(self.lbly[i], int(round(self.dcleft - txtW - txtH / 2)), int(round(y[i] - txtH / 2)))
+                dc.DrawText(self.lbly[i], self.dcleft - txtW - txtH / 2, y[i] - txtH / 2)
 
         # make a nice box around
         dc.DrawLine(self.dcleft, self.dctop, self.dcleft, self.dcbottom)
@@ -1052,17 +1052,17 @@ class FSRSPlot(wx.Panel):
         # write axis labels
         if self.xlabel != "":
             txtW, txtH = dc.GetTextExtent(self.xlabel)
-            dc.DrawText(self.xlabel, int(round((self.dcleft + self.dcright) / 2 - txtW / 2)), int(round(self.dcheight - 3 * txtH / 2)))
+            dc.DrawText(self.xlabel, (self.dcleft + self.dcright) / 2 - txtW / 2, self.dcheight - 3 * txtH / 2)
         if self.ylabel != "":
             txtW, txtH = dc.GetTextExtent(self.ylabel)
-            dc.DrawRotatedText(self.ylabel, int(round(txtH / 2)), int(round((self.dctop + self.dcbottom) / 2 + txtW / 2)), 90)
+            dc.DrawRotatedText(self.ylabel, txtH / 2, (self.dctop + self.dcbottom) / 2 + txtW / 2, 90)
 
         # display mouse coordinates
         mx, my = self.mousePos.Get()
         ix, iy = self.screen2data(mx, my)
         txt = "(" + self.formatNumber(ix) + ", " + self.formatNumber(iy) + ")"
         txtW, txtH = dc.GetTextExtent(txt)
-        dc.DrawText(txt, self.dcleft, int(round(self.dctop - txtH - 3)))
+        dc.DrawText(txt, self.dcleft, self.dctop - txtH - 3)
 
         # if show cross, draw cross through mouse position
         if self.showCross and self.mouseIn:
@@ -1207,7 +1207,7 @@ class DualPlotFrame(wx.Frame):
         self.splitter = wx.SplitterWindow(self, style=wx.SP_3DSASH | wx.SP_NOBORDER)
         self.upperPlotCanvas = FSRSPlot(self.splitter)
         self.lowerPlotCanvas = FSRSPlot(self.splitter)
-        self.splitter.SplitHorizontally(self.upperPlotCanvas, self.lowerPlotCanvas, sashPosition=int(round(size[1] / 2)))
+        self.splitter.SplitHorizontally(self.upperPlotCanvas, self.lowerPlotCanvas, sashPosition=size[1] / 2)
 
 # ----------------------------------------------------------------------------------------------------------------------------
 # for development

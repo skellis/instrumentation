@@ -108,7 +108,7 @@ def prepareScanPoints(self):
         points = np.linspace(start, stop, N)
 
     else:
-        print("load", self.getPropertyByLabel("use file").getValue())
+        print "load", self.getPropertyByLabel("use file").getValue()
         if self.getPropertyByLabel("use file").getValue() != "":    # load from file
             points = np.loadtxt(self.getPropertyByLabel("use file").getValue(), unpack=True)
             if len(points.shape) > 1:    # got several columns

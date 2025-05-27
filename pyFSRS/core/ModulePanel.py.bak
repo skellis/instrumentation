@@ -193,7 +193,7 @@ class ModulePanel(wx.Panel):
             dc.DrawLine(10, 7, 10, 14)
         lbl = self.GetLabel()
         txtW, txtH = dc.GetTextExtent(lbl)
-        dc.DrawText(lbl, 30, int(round(10 - txtH / 2)))
+        dc.DrawText(lbl, 30, 10 - txtH / 2)
 
     def onResize(self, event):
         """Handle a resize by repainting the panel.
@@ -219,7 +219,7 @@ class ModulePanel(wx.Panel):
         """
         label = wx.StaticText(self.mainpanel, -1, label)
         self.centralsizer.Add(label, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALIGN_LEFT)
-        if isinstance(wnd, str):
+        if isinstance(wnd, basestring):
             self.centralsizer.Add(wx.StaticText(self.mainpanel, -1, wnd), 0, wx.ALIGN_CENTER_VERTICAL | wx.ALIGN_RIGHT)
         else:
             self.centralsizer.Add(wnd, 1, wx.ALIGN_CENTER_VERTICAL | wx.EXPAND)

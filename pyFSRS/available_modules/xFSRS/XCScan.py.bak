@@ -141,15 +141,15 @@ class XCScan(module.Experiment):
         self.getPropertyByLabel("progress").setValue(0)
 
         if errors:
-            print("There were errors during the fitting. Could not determine parameters.")
+            print "There were errors during the fitting. Could not determine parameters."
         else:
-            print("Dispersion: ", np.amax(pos) - np.amin(pos), "fs")
-            print("Mean Width: ", np.mean(width), "+-", np.std(width), "fs")
+            print "Dispersion: ", np.amax(pos) - np.amin(pos), "fs"
+            print "Mean Width: ", np.mean(width), "+-", np.std(width), "fs"
 
             if np.argmax(pos) - np.argmin(pos) > 0:
-                print("You should remove prism from probe.")
+                print "You should remove prism from probe."
             else:
-                print("You should add prism to probe.")
+                print "You should add prism to probe."
 
         plframe = FSRSplot.FSRSDualPlotFrame(None, title="Fit Results", size=(640, 480))
         plframe.upperPlotCanvas.setYLabel("Position (fs)")

@@ -204,7 +204,7 @@ class Nanomotion(module.Axis):
     def goto(self, pos):
         if not self.ready:
             return
-        print("goto", pos)
+        print "goto", pos
         # move to new position
         self.instr.write("MA,%d,%f" % (self.getCurrentMotor(), pos * self.fs2mm))
         # start update timer
